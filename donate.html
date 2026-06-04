@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Make a 100% transparent donation to Iqra Qur'an Bank. Sponsor a Qur'an for just ETB 250, fund a Madrasa, or provide clean water to Ethiopian Muslim communities.">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-website-url.com/donate.html">
+  <meta property="og:title" content="Donate to Iqra Qur'an Bank — Make a Real Impact">
+  <meta property="og:description" content="Sponsor a Qur'an, build a Madrasa, or gift clean water. Every single donation is fully documented with real photos and videos sent to you.">
+  <meta property="og:image" content="https://your-website-url.com/assets/images/hero/og-image.jpg">
+
+  <title>Donate | Iqra Qur'an Bank</title>
+  <link rel="icon" type="image/png" href="assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* Payment Modal */
+    .payment-modal {
+      position: fixed; inset: 0; z-index: var(--z-modal);
+      background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--space-6);
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition-base);
+    }
+    .payment-modal.is-open { opacity: 1; pointer-events: all; }
+    .payment-modal__box {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-10);
+      max-width: 520px; width: 100%;
+      box-shadow: var(--shadow-2xl);
+    }
+    .payment-modal__title { font-size: var(--text-2xl); font-weight: var(--weight-bold); color: var(--color-navy); margin-bottom: var(--space-2); }
+    .payment-modal__subtitle { font-size: var(--text-sm); color: var(--color-gray-500); margin-bottom: var(--space-6); }
+    .payment-method { background: var(--color-light); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); margin-bottom: var(--space-3); border: 1px solid var(--color-gray-200); }
+    .payment-method__name { font-weight: var(--weight-bold); color: var(--color-navy); font-size: var(--text-base); margin-bottom: var(--space-1); }
+    .payment-method__detail { font-size: var(--text-sm); color: var(--color-gray-600); }
+    .payment-method__detail strong { color: var(--color-navy); }
+    .payment-modal__note { font-size: var(--text-xs); color: var(--color-gray-400); margin-top: var(--space-5); text-align: center; line-height: var(--leading-relaxed); }
+    .form-notice--success { background: var(--color-green-xlight); color: var(--color-green-dark); border: 1px solid var(--color-green); border-radius: var(--radius-lg); padding: var(--space-4); }
+    .form-notice--error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: var(--radius-lg); padding: var(--space-4); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__container container">
+      <a href="/" class="navbar__logo">
+        <img src="assets/images/logo/logo.png" alt="Iqra Qur'an Bank" class="navbar__logo-img">
+      </a>
+      <ul class="navbar__menu" id="navbarMenu" role="list">
+        <li class="navbar__item"><a href="/"    class="navbar__link">Home</a></li>
+        <li class="navbar__item"><a href="/about"    class="navbar__link">About</a></li>
+        <li class="navbar__item"><a href="/projects" class="navbar__link">Projects</a></li>
+        <li class="navbar__item"><a href="/gallery"  class="navbar__link">Gallery</a></li>
+        <li class="navbar__item"><a href="/contact"  class="navbar__link">Contact</a></li>
+        <li class="navbar__item"><a href="/donate"   class="navbar__link navbar__link--cta">Donate Now</a></li>
+      </ul>
+      <button class="navbar__hamburger" id="navbarToggle" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+  
+  <main>
+
+    <!-- ═══ PAGE HERO ════════════════════════════════════ -->
+    <section class="page-hero">
+      <div class="page-hero__pattern"></div>
+      <div class="container">
+        <div class="page-hero__content">
+          <div class="page-hero__breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <span>Donate</span>
+          </div>
+          <h1 class="page-hero__title">Make a <em>Donation</em></h1>
+          <p class="page-hero__subtitle">Choose your cause. Set your amount. Your donation will be documented and delivered with full transparency.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DONATE FORM ═══════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="donate-layout">
+
+          <!-- Left: Form -->
+          <div>
+
+            <!-- Step 1: Choose Cause -->
+            <div style="margin-bottom:var(--space-10)">
+              <h2 style="font-size:var(--text-2xl); color:var(--color-navy); margin-bottom:var(--space-2);">
+                <span style="color:var(--color-gold);">01</span> &nbsp;Choose Your Cause
+              </h2>
+              <p style="color:var(--color-gray-500); font-size:var(--text-sm); margin-bottom:var(--space-6);">Select the project you want to support.</p>
+
+              <div class="cause-grid">
+                <div class="cause-card" data-cause="quran" tabindex="0" role="button" aria-pressed="false">
+                  <span class="cause-card__icon">  <i class="fa-solid fa-book-open"></i></span>
+                  <p class="cause-card__title">Qur'an Bank</p>
+                  <p class="cause-card__cost">ETB 400 / copy</p>
+                  <p class="cause-card__desc">Distribute a copy of the Holy Qur'an to a child who cannot afford one.</p>
+                </div>
+                <div class="cause-card" data-cause="madrasa" tabindex="0" role="button" aria-pressed="false">
+                  <span class="cause-card__icon">  <i class="fa-solid fa-mosque"></i></span>
+                  <p class="cause-card__title">Madrasa Construction</p>
+                  <p class="cause-card__cost">From ETB 80,000</p>
+                  <p class="cause-card__desc">Fund the construction of an Islamic school in a rural village.</p>
+                </div>
+                <div class="cause-card" data-cause="solar" tabindex="0" role="button" aria-pressed="false">
+                  <span class="cause-card__icon">️  <i class="fa-solid fa-sun"></i></span>
+                  <p class="cause-card__title">Solar Energy</p>
+                  <p class="cause-card__cost">From ETB 15,000</p>
+                  <p class="cause-card__desc">Install solar lighting in a mosque or Madrasa for night learning.</p>
+                </div>
+                <div class="cause-card" data-cause="water" tabindex="0" role="button" aria-pressed="false">
+                  <span class="cause-card__icon"><i class="fa-solid fa-droplet"></i></span>
+                  <p class="cause-card__title">Clean Water</p>
+                  <p class="cause-card__cost">From ETB 12,000</p>
+                  <p class="cause-card__desc">Provide clean water access for a rural community.</p>
+                </div>
+              </div>
+
+              <input type="hidden" id="selectedCause" name="cause">
+            </div>
+
+            <!-- Step 2: Choose Amount -->
+            <div style="margin-bottom:var(--space-10)">
+              <h2 style="font-size:var(--text-2xl); color:var(--color-navy); margin-bottom:var(--space-2);">
+                <span style="color:var(--color-gold);">02</span> &nbsp;Choose an Amount
+              </h2>
+              <p style="color:var(--color-gray-500); font-size:var(--text-sm); margin-bottom:var(--space-6);">Select a suggested amount or enter your own.</p>
+
+              <div class="amount-grid">
+                <button type="button" class="amount-btn" data-amount="400">ETB 400</button>
+                <button type="button" class="amount-btn" data-amount="500">ETB 500</button>
+                <button type="button" class="amount-btn" data-amount="1000">ETB 1,000</button>
+                <button type="button" class="amount-btn" data-amount="5000">ETB 5,000</button>
+              </div>
+
+              <div class="amount-custom">
+                <span class="amount-custom__currency">ETB</span>
+                <input type="number" id="customAmount" class="form-input" placeholder="Enter custom amount" min="1">
+              </div>
+
+              <input type="hidden" id="selectedAmount" name="amount">
+            </div>
+
+            <!-- Step 3: Donor Info -->
+            <div>
+              <h2 style="font-size:var(--text-2xl); color:var(--color-navy); margin-bottom:var(--space-2);">
+                <span style="color:var(--color-gold);">03</span> &nbsp;Your Information
+              </h2>
+              <p style="color:var(--color-gray-500); font-size:var(--text-sm); margin-bottom:var(--space-6);">We need your details to send you documentation of your donation's impact.</p>
+
+              <form id="donateForm" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label form-label--required" for="donorName">Full Name</label>
+                    <input type="text" id="donorName" class="form-input" placeholder="Your full name" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label form-label--required" for="donorEmail">Email Address</label>
+                    <input type="email" id="donorEmail" class="form-input" placeholder="your@email.com" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                      <label class="form-label form-label--required" for="donorPhone">Phone Number</label>
+                    <input type="tel" id="donorPhone" class="form-input" placeholder="Your phone number"required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label form-label--required" for="donorCountry">Country</label>
+                    <input type="text" id="donorCountry" class="form-input" placeholder="Your country">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="donorMessage">Message (Optional)</label>
+                  <textarea id="donorMessage" class="form-textarea" placeholder="Leave a message for the community..." style="min-height:100px;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--gold btn--lg btn--full" style="margin-top:var(--space-4);">
+                  Proceed to Payment Instructions
+                </button>
+
+                <div id="donateNotice" style="margin-top:var(--space-4);"></div>
+
+              </form>
+            </div>
+
+          </div>
+
+          <!-- Right: Summary Sidebar -->
+          <aside class="donate-sidebar">
+            <div class="donate-summary">
+              <p class="donate-summary__title">Your Donation Summary</p>
+              <p class="donate-summary__cause" id="summaryCause">Select a cause above</p>
+              <p class="donate-summary__amount">
+                <span>ETB</span>
+                <span id="summaryAmount">0</span>
+              </p>
+              <hr style="border:none; border-top:1px solid rgba(255,255,255,0.08); margin-block:var(--space-5);">
+              <p style="font-size:var(--text-xs); color:rgba(255,255,255,0.45); line-height:var(--leading-relaxed);">
+                After submitting, you will receive payment account details via email. Transfer your donation and we will send you photo and video documentation within days of delivery.
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ PAYMENT MODAL ════════════════════════════════════ -->
+  <div class="payment-modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="payment-modal__box">
+      <h2 class="payment-modal__title" id="modalTitle">Payment Instructions</h2>
+      <p class="payment-modal__subtitle">
+        Your donation: <strong id="modalCause">—</strong> &nbsp;|&nbsp; Amount: <strong id="modalAmount">—</strong>
+      </p>
+
+      <p style="font-size:var(--text-sm); color:var(--color-gray-600); margin-bottom:var(--space-5); line-height:var(--leading-relaxed);">
+        Please transfer your donation to one of the following accounts. Use your name and the cause as the transfer reference.
+      </p>
+
+      <div class="payment-method">
+        <p class="payment-method__name"> <i class="fa-solid fa-phone"></i> Telebirr</p>
+        <p class="payment-method__detail">Account: <strong>0984 617 171</strong></p>
+        <p class="payment-method__detail">Name: <strong>Iqra Qur'an Bank</strong></p>
+      </div>
+
+      <div class="payment-method">
+        <p class="payment-method__name"><i class="fa-solid fa-building"></i>
+
+
+ Commercial Bank of Ethiopia</p>
+        <p class="payment-method__detail">Account: <strong>1000720442365</strong></p>
+        <p class="payment-method__detail">Name: <strong>Iqra Qur'an Bank</strong></p>
+      </div>
+
+      <div class="payment-method">
+        <p class="payment-method__name"> <i class="fa-solid fa-building"></i>
+ Abyssinia Bank</p>
+        <p class="payment-method__detail">Contact us at <strong>iqraquranbank@gmail.com</strong> for account details.</p>
+      </div>
+
+      <p class="payment-modal__note">
+        After transferring, send your receipt to <strong>iqraquranbank@gmail.com</strong> <strong>, WhatsApp </strong><strong>Or Telegram</strong>. We will confirm your donation shortly.
+      </p>
+
+      <button class="btn btn--navy btn--full" id="closePaymentModal" style="margin-top:var(--space-6);">
+        Close
+      </button>
+    </div>
+  </div>
+
+ <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">
+          <img src="assets/images/logo/logo.png" alt="Iqra Qur'an Bank" class="footer__logo-img">
+          <span class="footer__logo-text">Iqra Qur'an Bank</span>
+        </a>
+        <p class="footer__mission">
+          Distributing the Holy Qur'an, building Madrasas, installing solar energy, and providing clean water to rural Muslim communities across Ethiopia.
+        </p>
+        <div class="footer__social">
+          <a href="https://www.tiktok.com/@iqra.quran.bank" target="_blank" rel="noopener" class="footer__social-link" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1BKomAaJZD/" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+        <div class="footer__license">
+          <i class="fa-solid fa-shield-halved"></i>
+          License No. M/m/dhi/i/km/g/049/17
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer__col-title">Quick Links</h4>
+        <nav class="footer__links">
+          <a href="/"    class="footer__link">Home</a>
+          <a href="/about"    class="footer__link">About Us</a>
+          <a href="/projects" class="footer__link">Our Projects</a>
+          <a href="/gallery"  class="footer__link">Gallery</a>
+          <a href="/donate"   class="footer__link">Donate Now</a>
+          <a href="/contact"  class="footer__link">Contact</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 class="footer__col-title">Our Pillars</h4>
+        <nav class="footer__links">
+          <a href="/projects#quran"   class="footer__link"><i class="fa-solid fa-book-open"></i> Qur'an Bank</a>
+          <a href="/projects#madrasa" class="footer__link"><i class="fa-solid fa-mosque"></i> Madrasa Construction</a>
+          <a href="/projects#solar"   class="footer__link"><i class="fa-solid fa-sun"></i> Solar Energy</a>
+          <a href="/projects#water"   class="footer__link"><i class="fa-solid fa-droplet"></i> Clean Water</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 class="footer__col-title">Contact</h4>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="footer__contact-text">Robe, Bale, Ethiopia</span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon"><i class="fa-solid fa-phone"></i></span>
+          <span class="footer__contact-text">
+            <a href="tel:0984617171">0984 617 171</a>
+          </span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="footer__contact-text">
+            <a href="mailto:iqraquranbank@gmail.com">iqraquranbank@gmail.com</a>
+          </span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
+          <span class="footer__contact-text">
+            <a href="https://wa.me/251984617171" target="_blank" rel="noopener">WhatsApp Us</a>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; 2026 Iqra Qur'an Bank. All rights reserved. Founded 2025. Robe, Bale, Ethiopia.
+      </p>
+      <p class="footer__copy" style="margin-top:var(--space-1); opacity:0.45;">
+        Designed &amp; developed by
+        <a href="https://urhidu.pro.et" target="_blank" rel="noopener"
+           style="color:var(--color-gold-light); text-decoration:none; font-weight:var(--weight-medium); opacity:1;">
+          URHIDU Company
+        </a>
+      </p>
+      <nav class="footer__legal-links">
+        <a href="/privacy"    class="footer__legal-link">Privacy Policy</a>
+        <a href="/terms"      class="footer__legal-link">Terms &amp; Conditions</a>
+        <a href="/disclaimer" class="footer__legal-link">Disclaimer</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+  <script src="js/data/content.js"></script>
+  <script src="js/components/navbar.js"></script>
+  <script src="js/components/animations.js"></script>
+  <script src="js/pages/donate.js"></script>
+
+</body>
+</html>
