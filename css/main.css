@@ -1,0 +1,69 @@
+/* ============================================================
+   IQRA QUR'AN BANK — MAIN STYLESHEET
+   Load order matters. Do not rearrange.
+   ============================================================
+
+   1. Base
+      ├── variables   Design tokens (colors, spacing, type...)
+      ├── reset       Normalize browser defaults
+      └── typography  Type scale, utilities, layout helpers
+
+   2. Components
+      └── components  Buttons, cards, forms, badges, section headers
+
+   3. Sections
+      └── sections    Hero, impact, causes, testimonials, CTA
+
+   4. Pages
+      └── pages       Donate, gallery, contact, about, projects, legal
+
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+@import 'components/navbar.css';
+@import 'components/footer.css';
+@import 'components/components.css';
+@import 'sections/sections.css';
+@import 'pages/pages.css';
+
+/* ── Global Animation Utilities ──────────────────────────── */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+
+.fade-in.is-visible { opacity: 1; }
+
+.delay-100 { transition-delay: 0.10s; }
+.delay-200 { transition-delay: 0.20s; }
+.delay-300 { transition-delay: 0.30s; }
+.delay-400 { transition-delay: 0.40s; }
+.delay-500 { transition-delay: 0.50s; }
+.delay-600 { transition-delay: 0.60s; }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--color-gray-100); }
+::-webkit-scrollbar-thumb  { background: var(--color-gray-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+/* ── Body pad for fixed navbar ────────────────────────────── */
+body { padding-top: var(--navbar-height); }
+
+/* Pages that have a full-height hero handle the offset themselves */
+.has-fullscreen-hero { padding-top: 0; }
